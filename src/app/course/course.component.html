@@ -1,0 +1,83 @@
+<form>
+  <div class="container">
+    <div class="form-group">
+      <!--course section-->
+      <h3>Course</h3>
+      <div class="form-row">
+        <div class="col-md-3">
+          <select class="form-control" (change)="getStudentsByCourse($event)">
+            <option value="">Select Course</option>
+            <!--***two way binding** user can select a value and property will also change its value-->
+            <option
+              value="{{ course.course_id }}"
+              *ngFor="let course of courseList"
+            >
+              {{ course.course_name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button (click)="addNewCourse()" class="btn btn-primary button3 mt-3">
+            Add New Course
+          </button>
+        </div>
+        <div class="col-md-3 mt-3" *ngIf="showCourseTextBox">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="courseName"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <button (click)="addCourse()" class="btn btn-success button2 mt-3">
+            Add
+          </button>
+          <button (click)="removeCourse()" class="btn btn-warning button1 mt-3">
+            X
+          </button>
+        </div>
+      </div>
+      <!--************students section*********-->
+      <div class="form-row mt-5" *ngIf="showStudentSection">
+        <h3>Students</h3>
+        <div class="col-md-3 mt-3">
+          <select class="form-control">
+            <option value="">Select Student</option>
+            <!--***two way binding** user can select a value and property will also change its value-->
+            <option
+              value="{{ student.student_id }}"
+              *ngFor="let student of selectedStudentList"
+            >
+              {{ student.student_name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button
+            (click)="addNewStudent()"
+            class="btn btn-primary button3 mt-3"
+          >
+            Add New Student
+          </button>
+        </div>
+        <div class="col-md-3 mt-3" *ngIf="showStudentTextbox">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="studentName"
+            [ngModelOptions]="{ standalone: true }"
+          />
+
+          <button (click)="addStudent()" class="btn btn-success button2 mt-3">
+            Add
+          </button>
+          <button
+            (click)="removeStudent()"
+            class="btn btn-warning button1 mt-3"
+          >
+            X
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
